@@ -1,43 +1,19 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../interfaces/product';
+import { ProductService } from '../services/product.service';
 
-let PRODUCTS_LIST: Product[] = [
-  { name: 'Adrian', price: 5.4, format: 'black', brand: 'Enim aut.' },
-  { name: 'Verna', price: 5.13, format: 'azure', brand: 'Voluptatibus voluptas.' },
-  { name: 'Lelia', price: 5.75, format: 'gold', brand: 'Dolorem saepe' },
-  { name: 'Perlie', price: 5.78, format: 'white', brand: 'Repundiandae minima' },
-  { name: 'Noemi', price: 8.4, format: 'gold', brand: 'Error et.' },
-  { name: 'Adrian', price: 5.4, format: 'black', brand: 'Enim aut.' },
-  { name: 'Verna', price: 5.13, format: 'azure', brand: 'Voluptatibus voluptas.' },
-  { name: 'Lelia', price: 5.75, format: 'gold', brand: 'Dolorem saepe' },
-  { name: 'Perlie', price: 5.78, format: 'white', brand: 'Repundiandae minima' },
-  { name: 'Noemi', price: 8.4, format: 'gold', brand: 'Error et.' },
-  { name: 'Adrian', price: 5.4, format: 'black', brand: 'Enim aut.' },
-  { name: 'Verna', price: 5.13, format: 'azure', brand: 'Voluptatibus voluptas.' },
-  { name: 'Lelia', price: 5.75, format: 'gold', brand: 'Dolorem saepe' },
-  { name: 'Perlie', price: 5.78, format: 'white', brand: 'Repundiandae minima' },
-  { name: 'Noemi', price: 8.4, format: 'gold', brand: 'Error et.' },
-  { name: 'Adrian', price: 5.4, format: 'black', brand: 'Enim aut.' },
-  { name: 'Verna', price: 5.13, format: 'azure', brand: 'Voluptatibus voluptas.' },
-  { name: 'Lelia', price: 5.75, format: 'gold', brand: 'Dolorem saepe' },
-  { name: 'Perlie', price: 5.78, format: 'white', brand: 'Repundiandae minima' },
-  { name: 'Noemi', price: 8.4, format: 'gold', brand: 'Error et.' },
-  { name: 'Adrian', price: 5.4, format: 'black', brand: 'Enim aut.' },
-  { name: 'Verna', price: 5.13, format: 'azure', brand: 'Voluptatibus voluptas.' },
-  { name: 'Lelia', price: 5.75, format: 'gold', brand: 'Dolorem saepe' },
-  { name: 'Perlie', price: 5.78, format: 'white', brand: 'Repundiandae minima' },
-  { name: 'Noemi', price: 8.4, format: 'gold', brand: 'Error et.' },
-];
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
-  productList: Product[] = PRODUCTS_LIST;
+  productList: Product[] = [];
   displayedColumns: string[] = [
     'name',
     'price',
@@ -50,17 +26,31 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() { }
+  constructor(private productService: ProductService, private snackBar: MatSnackBar) { }
 
   ngAfterViewInit(): void {
-    this.dataSourceTable.paginator = this.paginator;
-    this.dataSourceTable.sort = this.sort
+    this.setPaginatoranSort();
   }
 
   ngOnInit(): void {
-    this.dataSourceTable = new MatTableDataSource(this.productList)
+    this.loadProducts();
+  }
+  loadProducts() {
+    this.productList = this.productService.getProducts();
+    this.dataSourceTable = new MatTableDataSource(this.productList);
+  }
+  setPaginatoranSort() {
+    this.dataSourceTable.paginator = this.paginator;
+    this.dataSourceTable.sort = this.sort
   }
   deleteProduct(index: number) {
-
+    this.productService.removeProduct(index);
+    this.loadProducts();
+    this.setPaginatoranSort();
+    this.snackBar.open('Producto eliminado con éxito', '', {
+      duration: 1500,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }
