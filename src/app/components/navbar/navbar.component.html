@@ -1,8 +1,11 @@
 <mat-toolbar color="secondary">
     <span>Mercadona</span>
     <span class="example-spacer"></span>
-    <button  class="button" mat-raised-button color="primary">login</button>
-    <button mat-icon-button routerLink="/login" class="example-icon favorite-icon" >
-        <mat-icon>logout</mat-icon>
-    </button>
+    <button *ngIf="!isLogged()" [routerLink]="['/login']"  mat-raised-button color="primary">login</button>
+    <div *ngIf="isLogged()">
+        <span class="small-text"> {{ getUsername() }} </span>
+        <button mat-icon-button (click)="logout()" class="example-icon favorite-icon" >
+            <mat-icon>logout</mat-icon>
+        </button>    
+    </div>
 </mat-toolbar> 
