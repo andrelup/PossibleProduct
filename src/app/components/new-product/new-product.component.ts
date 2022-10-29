@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-new-product',
@@ -12,7 +14,7 @@ export class NewProductComponent implements OnInit {
   priceValue = '';
   nameValue = '';
   formatValue = '';
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private productService: ProductService) {
     this.newProductForm = this.fb.group({
       name: ['', Validators.required],
       price: ['', Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.1)],
@@ -52,6 +54,12 @@ export class NewProductComponent implements OnInit {
     }
   }
   onSubmit() {
-
+    let product: Product = {
+      name: this.newProductForm.value.name,
+      price: this.newProductForm.value.price,
+      format: this.newProductForm.value.format,
+      brand: this.newProductForm.value.brand,
+    }
+    // this.productService.addProduct()
   }
 }
