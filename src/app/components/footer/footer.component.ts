@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NewProductComponent } from 'src/app/new-product/new-product.component';
+import { NewProductComponent } from 'src/app/components/new-product/new-product.component';
 
 @Component({
   selector: 'app-footer',

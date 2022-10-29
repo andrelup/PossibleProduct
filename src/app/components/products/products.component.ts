@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Product } from '../interfaces/product';
-import { ProductService } from '../services/product.service';
+import { Product } from '../../interfaces/product';
+import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService, private snackBar: MatSnackBar) { }
 
   ngAfterViewInit(): void {
-    this.setPaginatoranSort();
+    this.setPaginatorAndSort();
   }
 
   ngOnInit(): void {
@@ -39,18 +39,18 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.productList = this.productService.getProducts();
     this.dataSourceTable = new MatTableDataSource(this.productList);
   }
-  setPaginatoranSort() {
+  setPaginatorAndSort() {
     this.dataSourceTable.paginator = this.paginator;
     this.dataSourceTable.sort = this.sort
   }
   deleteProduct(index: number) {
     this.productService.removeProduct(index);
     this.loadProducts();
-    this.setPaginatoranSort();
+    this.setPaginatorAndSort();
     this.snackBar.open('Producto eliminado con éxito', '', {
       duration: 1500,
       horizontalPosition: 'center',
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
     });
   }
 }

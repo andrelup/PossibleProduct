@@ -20,10 +20,10 @@ import { HomeComponent } from './components/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NewProductComponent } from './new-product/new-product.component';
+import { NewProductComponent } from './components/new-product/new-product.component';
 @NgModule({
   declarations: [
     AppComponent,
