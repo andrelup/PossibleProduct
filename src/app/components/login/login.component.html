@@ -4,14 +4,14 @@
             <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
             <div class="card" *ngIf="!loading">
                 <div class="card-body">
-                    <div *ngIf="errorLogin" class="alert alert-danger"> Usuario o contraseña incorrecta </div>
                     <form *ngIf="!loading" [formGroup]="loginForm" (ngSubmit)="login()">
                         <h1>Login</h1>
-                        <mat-form-field>
+                        <div *ngIf="errorLogin" class="alert alert-danger"> Usuario o contraseña incorrecta </div>
+                        <mat-form-field class="all-width">
                             <mat-label>User</mat-label>
                             <input type="text" matInput autocomplete="off" formControlName="username">
                         </mat-form-field>
-                        <mat-form-field>
+                        <mat-form-field class="all-width">
                             <mat-label>password</mat-label>
                             <input type="password" matInput autocomplete="off" formControlName="password">
                         </mat-form-field>
