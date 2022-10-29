@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorLogin: boolean = true;
+  errorLogin: boolean = false;
   loading: boolean = false;
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
@@ -26,7 +26,7 @@ export class LoginComponent {
     if (user === 'admin' && password === 'admin') {
       this.fakeLoading();
     } else {
-      this.errorLogin = true;
+      this.setErrorLoading()
     }
   }
   fakeLoading() {
@@ -34,5 +34,9 @@ export class LoginComponent {
     setTimeout(() => {
       this.router.navigate(['products'])
     }, 1500)
+  }
+  setErrorLoading() {
+    this.errorLogin = true;
+    setTimeout(() => this.errorLogin = false, 5000);
   }
 }
