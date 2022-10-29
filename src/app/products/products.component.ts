@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.snackBar.open('Producto eliminado con éxito', '', {
       duration: 1500,
       horizontalPosition: 'center',
-      verticalPosition: 'bottom',
+      verticalPosition: 'top',
     });
   }
 }
