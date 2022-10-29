@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class LoginComponent {
+  loginForm: FormGroup;
+  errorLogin: boolean = true;
+  loading: boolean = false;
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.loginForm = this.fb.group({
+      user: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
 
+  login() {
+    const user = this.loginForm.value.user
+    const password = this.loginForm.value.password;
+    console.log('usuario: ', user);
+    console.log('password: ', password);
+    if (user === 'admin' && password === 'admin') {
+      this.fakeLoading();
+    } else {
+      this.errorLogin = true;
+    }
+  }
+  fakeLoading() {
+    this.loading = true;
+    setTimeout(() => {
+      this.router.navigate(['products'])
+    }, 1500)
+  }
 }
