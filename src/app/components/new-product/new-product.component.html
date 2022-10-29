@@ -1,1 +1,17 @@
-<p>add-product works!</p>
+<h2>Nuevo producto</h2>
+<div class="container-fluid">
+    <form [formGroup]="newProductForm">
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field style="width: 100%">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                  </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6"></div>
+            </div>
+        </div>
+    </form>
+</div>
