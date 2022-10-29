@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,19 +12,20 @@ export class LoginComponent {
   loginForm: FormGroup;
   errorLogin: boolean = false;
   loading: boolean = false;
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private storageService: StorageService) {
     this.loginForm = this.fb.group({
-      user: ['', Validators.required],
+      username: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
 
   login() {
-    const user = this.loginForm.value.user
+    const username = this.loginForm.value.username
     const password = this.loginForm.value.password;
-    console.log('usuario: ', user);
+    console.log('username: ', username);
     console.log('password: ', password);
-    if (user === 'admin' && password === 'admin') {
+    if (username === 'admin' && password === 'admin') {
+      this.storageService.setItem('username', username)
       this.fakeLoading();
     } else {
       this.setErrorLoading()
