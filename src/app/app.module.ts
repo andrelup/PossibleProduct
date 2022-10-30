@@ -27,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { ManageColumnComponent } from './components/manage-column/manage-column.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ConfirmDeleteComponent } from './components/confirm-delete/confirm-delete.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ProductsComponent,
     FooterComponent,
     NewProductComponent,
-    ManageColumnComponent
+    ManageColumnComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
