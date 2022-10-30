@@ -20,7 +20,5 @@ export class ConfirmDeleteComponent implements OnInit {
   deleteProduct() {
     this.productService.removeProduct(this.data.indexToDelete);
   }
-  closeDialog() {
-    this.dialogRef.close();
-  }
+
 }

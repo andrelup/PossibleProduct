@@ -37,10 +37,5 @@ export class ManageColumnComponent implements OnInit {
   }
   apply() {
     this.columnService.setColumns(this.columns);
-    this.closeDialog();
-  }
-
-  closeDialog() {
-    this.dialogRef.close();
   }
 }

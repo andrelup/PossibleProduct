@@ -1,8 +1,7 @@
-<div cdkDropListGroup>
-
+<h2 mat-dialog-title>Configurar columnas</h2>
+<mat-dialog-content>
+  <div cdkDropListGroup>
     <div class="example-container">
-      <h2>Configurar columnas</h2>
-  
       <div
         cdkDropList
         [cdkDropListData]="columns"
@@ -23,18 +22,8 @@
       </div>
     </div>
   </div>
-  <hr>
-<div class="container-fluid mb-0">
-        <div class="row">
-            <div class="col-6">
-                <div class="text-start">
-                    <button type="button"  (click)="closeDialog()" mat-raised-button color="secondary">Cancelar</button>
-                </div>
-            </div>
-            <div class="col-6">
-            <div class="text-end">
-                <button type="button"  (click)="apply()" mat-raised-button color="primary">Aplicar</button>
-            </div>
-        </div>
-    </div>
-</div>
+ </mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" color="primary" (click)="apply()">Aplicar</button>
+</mat-dialog-actions>

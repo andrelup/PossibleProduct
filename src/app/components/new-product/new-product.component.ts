@@ -45,7 +45,6 @@ export class NewProductComponent implements OnInit {
     }
     console.log(product);
     this.productService.addProduct(product);
-    this.closeDialog();
   }
   disabledSubmitButton() {
     if (this.nameValue && this.brandValue && this.priceValue > 0 && this.brandValue) {
@@ -54,7 +53,5 @@ export class NewProductComponent implements OnInit {
       return true
     }
   }
-  closeDialog() {
-    this.dialogRef.close();
-  }
+
 }
