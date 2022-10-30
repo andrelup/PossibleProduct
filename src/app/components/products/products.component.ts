@@ -53,4 +53,8 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       verticalPosition: 'bottom',
     });
   }
+  reloadTable() {
+    this.loadProducts();
+    this.setPaginatorAndSort()
+  }
 }
