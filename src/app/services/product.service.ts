@@ -37,6 +37,9 @@ export class ProductService {
   getProducts() {
     return this.listProducts.slice();
   }
+  countProducts() {
+    return this.listProducts.length;
+  }
   addProduct(product: Product) {
     this.listProducts.unshift(product);
   }
