@@ -25,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewProductComponent } from './components/new-product/new-product.component';
+import { ManageColumnComponent } from './components/manage-column/manage-column.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { NewProductComponent } from './components/new-product/new-product.compon
     LoginComponent,
     ProductsComponent,
     FooterComponent,
-    NewProductComponent
+    NewProductComponent,
+    ManageColumnComponent
   ],
   imports: [
     BrowserModule,
