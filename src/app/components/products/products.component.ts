@@ -1,10 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Column } from 'src/app/interfaces/column';
+import { ColumnService } from 'src/app/services/column.service';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
+import { ManageColumnComponent } from '../manage-column/manage-column.component';
 
 
 @Component({
@@ -14,18 +18,20 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
   productList: Product[] = [];
+  displayedColumns: string[] = [];
 
   dataSourceTable!: MatTableDataSource<Product>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private productService: ProductService, private snackBar: MatSnackBar) { }
+  constructor(private productService: ProductService, private snackBar: MatSnackBar, private columnService: ColumnService, private matDialog: MatDialog) { }
 
   ngAfterViewInit(): void {
     this.setPaginatorAndSort();
   }
 
   ngOnInit(): void {
+    this.loadColumns();
     this.loadProducts();
   }
   loadProducts() {
@@ -46,8 +52,20 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       verticalPosition: 'bottom',
     });
   }
+  loadColumns() {
+    this.displayedColumns = this.columnService.getOnlyShowsColumns().concat("actions");
+  }
   reloadTable() {
     this.loadProducts();
     this.setPaginatorAndSort()
+  }
+  openManageColumnsDialog() {
+    const dialogRef = this.matDialog.open(ManageColumnComponent, {
+      width: '600px',
+      height: '500px',
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      this.loadColumns();
+    });
   }
 }

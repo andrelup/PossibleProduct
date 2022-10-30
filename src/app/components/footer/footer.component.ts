@@ -18,9 +18,6 @@ export class FooterComponent {
       height: '400px',
     });
     dialogRef.afterClosed().subscribe((res) => {
-      if (res) {
-        console.log('Modal closed: ', res);
-      }
       this.reloadProducts.emit()
     });
   }

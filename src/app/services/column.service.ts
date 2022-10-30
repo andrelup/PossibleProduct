@@ -6,10 +6,10 @@ import { Column } from '../interfaces/column';
 })
 export class ColumnService {
   columnsList: Column[] = [
-    { name: 'name', show: true },
-    { name: 'price', show: true },
-    { name: 'format', show: true },
-    { name: 'brand', show: true },
+    { id: 1, name: 'name', show: true },
+    { id: 2, name: 'price', show: true },
+    { id: 3, name: 'format', show: true },
+    { id: 4, name: 'brand', show: true },
   ];
   constructor() { }
   getColumns() {
@@ -20,5 +20,8 @@ export class ColumnService {
   }
   setShowFieldByIndex(index: number, show: boolean) {
     this.columnsList[index].show = show;
+  }
+  setColumns(columns: Column[]) {
+    this.columnsList = columns;
   }
 }

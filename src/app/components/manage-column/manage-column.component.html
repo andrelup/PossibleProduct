@@ -1,1 +1,25 @@
-<p>manage-column works!</p>
+<div cdkDropListGroup>
+
+    <div class="example-container">
+      <h2>Configurar columnas</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="columns"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of columns; let i = index" cdkDrag>
+            <div class="row">
+                <div class="col-2">{{item.id}}</div>
+                <div class="col-5">{{item.name}}</div>
+                <div class="col-2">    
+                    <a class="pointer" (click)="showColumn(i)" color="primary" matTooltip="Gestionar las Columnas">
+                        <mat-icon *ngIf="item.show">remove_red_eye</mat-icon>
+                        <mat-icon *ngIf="!item.show">panorama_fish_eye</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

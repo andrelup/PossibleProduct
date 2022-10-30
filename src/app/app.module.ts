@@ -26,6 +26,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { ManageColumnComponent } from './components/manage-column/manage-column.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { ManageColumnComponent } from './components/manage-column/manage-column.
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
