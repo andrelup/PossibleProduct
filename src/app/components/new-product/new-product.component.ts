@@ -11,13 +11,14 @@ import { ProductService } from 'src/app/services/product.service';
 export class NewProductComponent implements OnInit {
   formatList: string[] = ['black', 'azure', 'gold', 'white'];
   newProductForm: FormGroup;
-  priceValue = '';
+  priceValue!: number;
   nameValue = '';
   formatValue = '';
+  brandValue = '';
   constructor(private fb: FormBuilder, private productService: ProductService) {
     this.newProductForm = this.fb.group({
       name: ['', Validators.required],
-      price: ['', Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.1)],
+      price: [''],
       format: ['', Validators.required],
       brand: ['', Validators.required],
     });
@@ -25,41 +26,49 @@ export class NewProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.priceValue = '0'
+    this.priceValue = 0
   }
 
   plusPrice() {
     try {
-      let priceValue = parseFloat(this.priceValue);
-      priceValue += 0.1;
-      Math.round(priceValue * 100) / 100;
-      this.priceValue = '' + Math.round(priceValue * 100) / 100;
+      this.priceValue += 0.1;
+      this.priceValue = Math.round(this.priceValue * 100) / 100;
+      this.newProductForm.value.price = this.priceValue;
     } catch (error) {
       console.error(error);
     }
   }
   lessPrice() {
     try {
-      let priceValue = parseFloat(this.priceValue);
-      priceValue -= 0.1;
-      if (priceValue > 0) {
+      this.priceValue -= 0.1;
+      if (this.priceValue > 0) {
 
-        Math.round(priceValue * 100) / 100;
-        this.priceValue = '' + Math.round(priceValue * 100) / 100;
+        Math.round(this.priceValue * 100) / 100;
+        this.priceValue = Math.round(this.priceValue * 100) / 100;
       } else {
-        this.priceValue = '0';
+        this.priceValue = 0;
       }
+      this.newProductForm.value.price = this.priceValue;
     } catch (error) {
       console.error(error);
     }
   }
+
   onSubmit() {
     let product: Product = {
-      name: this.newProductForm.value.name,
-      price: this.newProductForm.value.price,
-      format: this.newProductForm.value.format,
-      brand: this.newProductForm.value.brand,
+      name: this.nameValue,
+      price: this.priceValue,
+      format: this.formatValue,
+      brand: this.brandValue,
     }
-    // this.productService.addProduct()
+    console.log(product);
+    this.productService.addProduct(product);
+  }
+  disabledSubmitButton() {
+    if (this.nameValue && this.brandValue && this.priceValue > 0 && this.brandValue) {
+      return false;
+    } else {
+      return true
+    }
   }
 }

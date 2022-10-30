@@ -1,26 +1,26 @@
 <h2>Nuevo producto</h2>
 <div class="container-fluid">
-    <form [formGroup]="newProductForm">
         <div class="row">
             <div class="col-12">
                 <mat-form-field class="all-width"  floatLabel="always">
                     <mat-label>Name</mat-label>
-                    <input matInput formControlName="name" autocomplete="off">
+                    <input matInput [(ngModel)]="nameValue" autocomplete="off">
                 </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
+                <label for="price" class="form-label">Precio</label>
                 <div class="input-group mb-3 all-width">
-                    <button (click)="plusPrice()" class="input-group-text">+</button>
-                    <input type=number class="form-control"  placeHolder="0,00€" [value]="priceValue" formControlName="price" >
-                    <button (click)="lessPrice()" class="input-group-text">-</button>
+                    <button type="button" (click)="plusPrice()" class="input-group-text">+</button>
+                    <input type="number" class="form-control" id="price"  placeHolder="0,00€" [(ngModel)]="priceValue" min="0" readonly >
+                    <button type="button"  (click)="lessPrice()" class="input-group-text">-</button>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mt-3">
                 <mat-form-field class="all-width"  >
                     <mat-label>Formato</mat-label>
-                    <mat-select formControlName="format">
+                    <mat-select [(ngModel)]="formatValue">
                         <mat-option *ngFor="let item of formatList" [value]="item">
                             {{item}}
                         </mat-option>
@@ -32,9 +32,12 @@
             <div class="col-12">
                 <mat-form-field class="all-width"  floatLabel="always">
                     <mat-label>Marca</mat-label>
-                    <input matInput formControlName="brand" autocomplete="off">
+
+                    <input matInput [(ngModel)]="brandValue" autocomplete="off">
                 </mat-form-field>
             </div>
         </div>
-    </form>
+        <div class="text-center mt-2">
+            <button type="submit" [disabled]="disabledSubmitButton()" (click)="onSubmit()" mat-raised-button color="primary">Guardar</button>
+        </div>
 </div>

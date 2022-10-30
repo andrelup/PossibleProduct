@@ -37,6 +37,9 @@ export class ProductService {
   getProducts() {
     return this.listProducts.slice();
   }
+  addProduct(product: Product) {
+    this.listProducts.unshift(product);
+  }
   removeProduct(index: number) {
     this.listProducts.splice(index, 1);
   }
