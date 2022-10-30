@@ -22,4 +22,7 @@ export class NavbarComponent {
     this.storageService.removeItem('username')
     this.router.navigate(['/home']);
   }
+  isNotLogginURL() {
+    return this.router.url === '/login' ? false : true;
+  }
 }

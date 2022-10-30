@@ -1,10 +1,13 @@
 <div class="container-fluid">
-    <div class="position-relative">
-        <div class="position-absolute top-50 start-50">
-            <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+    <div class="row mt-5">
+        <div class="col-12 text-center" *ngIf="loading">
+            <mat-spinner class="spinner" diameter="50"></mat-spinner>
+            <span class="loading-text" > Cargando...</span>
+        </div>
+        <div class="offset-3 offset-md-4 offset-lg-5 col-6 col-md-4 col-lg-2" *ngIf="!loading" >
             <div class="card" *ngIf="!loading">
-                <div class="card-body">
-                    <form *ngIf="!loading" [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="card-body ">
+                    <form  [formGroup]="loginForm" (ngSubmit)="login()">
                         <h1>Login</h1>
                         <div *ngIf="errorLogin" class="alert alert-danger"> Usuario o contraseña incorrecta </div>
                         <mat-form-field class="all-width">
@@ -16,7 +19,9 @@
                             <input type="password" matInput autocomplete="off" formControlName="password">
                         </mat-form-field>
                         <br>
-                        <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">Acceder</button>
+                        <div class="text-center">
+                            <button class="btn-mercadona" type="submit" [disabled]="loginForm.invalid" mat-raised-button>Acceder</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <mat-toolbar color="secondary">
-    <span>Mercadona</span>
+    <img src="/assets/img/logo.png" height="30px" alt="">
     <span class="example-spacer"></span>
-    <button *ngIf="!isLogged()" [routerLink]="['/login']"  mat-raised-button color="primary">login</button>
+    <button *ngIf="!isLogged() && isNotLogginURL()" class="btn-mercadona"  [routerLink]="['/login']"  mat-raised-button >login</button>
     <div *ngIf="isLogged()">
         <span class="small-text"> {{ getUsername() }} </span>
         <button mat-icon-button (click)="logout()" class="example-icon favorite-icon" >
