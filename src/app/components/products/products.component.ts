@@ -14,13 +14,6 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
   productList: Product[] = [];
-  displayedColumns: string[] = [
-    'name',
-    'price',
-    'format',
-    'brand',
-    'actions',
-  ];
 
   dataSourceTable!: MatTableDataSource<Product>
   @ViewChild(MatPaginator) paginator!: MatPaginator;
