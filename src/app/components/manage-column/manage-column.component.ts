@@ -35,7 +35,7 @@ export class ManageColumnComponent implements OnInit {
   showColumn(index: number) {
     this.columns[index].show = !this.columns[index].show;
   }
-  acept() {
+  apply() {
     this.columnService.setColumns(this.columns);
     this.closeDialog();
   }
