@@ -4,9 +4,9 @@
 ```
 
 # Usuario de prueba
-`email:` admin
+`usuario:` admin
 
-`password:` admin
+`contraseña:` admin
 
 ## Lanzar los tests unitarios
 ```
