@@ -36,7 +36,7 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef style="text-align: right">Acciones</th>
                         <td mat-cell *matCellDef="let element; let i = index " style="text-align: right">
-                        <a class="pointer" (click)="deleteProduct(i)" style="color: #e15639" matTooltip="Eliminar producto">
+                        <a class="pointer" (click)="openConfirmDeleteDialog(i)" style="color: #e15639" matTooltip="Eliminar producto">
                             <mat-icon>delete</mat-icon>
                         </a>
                         </td>

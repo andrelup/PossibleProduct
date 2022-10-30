@@ -4,10 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Column } from 'src/app/interfaces/column';
 import { ColumnService } from 'src/app/services/column.service';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { ManageColumnComponent } from '../manage-column/manage-column.component';
 
 
@@ -42,16 +42,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     this.dataSourceTable.paginator = this.paginator;
     this.dataSourceTable.sort = this.sort
   }
-  deleteProduct(index: number) {
-    this.productService.removeProduct(index);
-    this.loadProducts();
-    this.setPaginatorAndSort();
-    this.snackBar.open('Producto eliminado con éxito', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-    });
-  }
+
   loadColumns() {
     this.displayedColumns = this.columnService.getOnlyShowsColumns().concat("actions");
   }
@@ -66,6 +57,25 @@ export class ProductsComponent implements OnInit, AfterViewInit {
     });
     dialogRef.afterClosed().subscribe((res) => {
       this.loadColumns();
+    });
+  }
+  openConfirmDeleteDialog(index: number) {
+
+    const dialogRef = this.matDialog.open(ConfirmDeleteComponent, {
+      width: '600px',
+      height: '200px',
+      data: { indexToDelete: index }
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log(res);
+      if (res) {
+        this.snackBar.open('Producto eliminado con éxito', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        });
+        this.reloadTable();
+      }
     });
   }
 }
