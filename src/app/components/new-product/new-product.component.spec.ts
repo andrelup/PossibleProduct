@@ -1,14 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppModule } from '../../app.module';
 import { NewProductComponent } from './new-product.component';
 
-describe('AddProductComponent', () => {
+describe('NewProductComponent', () => {
   let component: NewProductComponent;
   let fixture: ComponentFixture<NewProductComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NewProductComponent]
+      declarations: [NewProductComponent],
+      imports: [AppModule]
     })
       .compileComponents();
 

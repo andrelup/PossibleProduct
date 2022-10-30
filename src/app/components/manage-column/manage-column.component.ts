@@ -12,7 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ManageColumnComponent implements OnInit {
 
   columns!: Column[];
-  constructor(private columnService: ColumnService, public dialogRef: MatDialogRef<ManageColumnComponent>) { }
+  constructor(private columnService: ColumnService) { }
 
   ngOnInit(): void {
     this.columns = this.columnService.getColumns();

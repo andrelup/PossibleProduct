@@ -11,14 +11,12 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ConfirmDeleteComponent implements OnInit {
 
-  constructor(private productService: ProductService, public dialogRef: MatDialogRef<ConfirmDeleteComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    console.log('modal dialog opened:' + this.data.indexToDelete);
-
   }
-  deleteProduct() {
-    this.productService.removeProduct(this.data.indexToDelete);
-  }
+  // deleteProduct() {
+  //   this.productService.removeProduct(this.data.indexToDelete);
+  // }
 
 }

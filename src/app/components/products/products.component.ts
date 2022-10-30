@@ -63,18 +63,18 @@ export class ProductsComponent implements OnInit, AfterViewInit {
 
     const dialogRef = this.matDialog.open(ConfirmDeleteComponent, {
       width: '600px',
-      height: '200px',
-      data: { indexToDelete: index }
+      height: '200px'
     });
     dialogRef.afterClosed().subscribe((res) => {
       console.log(res);
       if (res) {
+        this.productService.removeProduct(index);
+        this.reloadTable();
         this.snackBar.open('Producto eliminado con éxito', '', {
           duration: 1500,
           horizontalPosition: 'center',
           verticalPosition: 'bottom',
         });
-        this.reloadTable();
       }
     });
   }

@@ -16,7 +16,7 @@ export class NewProductComponent implements OnInit {
   nameValue = '';
   formatValue = '';
   brandValue = '';
-  constructor(private productService: ProductService, public dialogRef: MatDialogRef<NewProductComponent>) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.priceValue = 0
